@@ -264,4 +264,4 @@ deeplearning.ai 提供
 - Transformer Network
 - Conclusion and Thank You!
 
-*practice quiz: Transformers*
+*Practice quiz: Transformers*
