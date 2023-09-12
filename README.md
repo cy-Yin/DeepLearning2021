@@ -265,3 +265,26 @@ deeplearning.ai 提供
 - Conclusion and Thank You!
 
 *Practice quiz: Transformers*
+
+## POSTSCRIPT
+
+Some materials and notes can be found in [MachineLearning2022](https://github.com/cy-Yin/MachineLearning2022) repository in [GitHub](https://github.com/) since the knowledge has not changed a lot and the lectures in [Deep Learning Specialization](https://www.coursera.org/specializations/deep-learning?)are similar to those in the [Machine Learning Specialization](https://www.coursera.org/specializations/machine-learning-introduction?).
+
+I will point it out where someone can find the similar notes instead of repeating it again in this repository. 
+
+Please pull this repository to your computer with another repository [MachineLearning2022](https://github.com/cy-Yin/MachineLearning2022) and open them through **Obsidian** to use the links. 
+
+Make sure the two folders are in the same Obsidian Vault and the two folders are under the same path in your computer.
+
+该仓库中笔记部分会与 [MachineLearning2022](https://github.com/cy-Yin/MachineLearning2022) 中的笔记重复，在此不再重写一遍，而是链接到 [MachineLearning2022](https://github.com/cy-Yin/MachineLearning2022) 的仓库的具体笔记部分。
+
+使用Obsidian来显示创建的块链接。
+- 拉取两个仓库（[MachineLearning2022](https://github.com/cy-Yin/MachineLearning2022)和[DeepLearning2021](https://github.com/cy-Yin/DeepLearning2021)）到本地。
+- 创建一个Obsidian仓库，将两个文件夹放到这个仓库中的同一文件路径下（最好直接移动到创建的Obsidian仓库中，如创建一个名为AndrewNg的仓库，最终目录如下）
+```
+AndrewNg\
+	.obsidian
+	MachineLearning2022	
+	DeepLearning2021
+```
+- 打开Obisidian应用即可使用我创建的块链接
