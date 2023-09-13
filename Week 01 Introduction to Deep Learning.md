@@ -12,6 +12,7 @@ Application:
 - Speech recognition, Machine translation: RNN
 - Autonomous driving: Custom/Hybrid NNs
 
+Structured data and unstructured data
 - Structured Data 结构化数据：基于数据库的数据，每条数据的内容有明确的表示，如房屋价格、房屋大小、用户年龄等等
 - Unstructured Data 非结构化数据：类似音频、文本、图片等等
 
