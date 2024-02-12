@@ -1,11 +1,11 @@
 
 ## Binary Classification 二元分类
 
-对于一张 $m \times m$ 大小的图片，其每个像素通道都可以用RGB的三元组表示，整合为一个输入向量$x$，其维度为 $n_x = m \times m \times 3$
+对于一张 $m \times m$ 大小的图片，其每个像素通道都可以用RGB的三元组表示，整合为一个输入向量 $x$ ，其维度为 $n_x = m \times m \times 3$
 
-在二元分类中，我们输入这个向量$x$，用神经网络预测对应的输出$y$等于1还是0
+在二元分类中，我们输入这个向量 $x$ ，用神经网络预测对应的输出 $y$ 等于1还是0
 
-*Machine Learning Terminology 机器学习术语* [Machine Learning Terminology](../MachineLearning2022/Week%2001%20Introduction%20to%20machine%20learning.md#Linear%20Regression%20Model%20线性回归模型)
+*Machine Learning Terminology 机器学习术语*  [Machine Learning Terminology](../MachineLearning2022/Week%2001%20Introduction%20to%20machine%20learning.md#Linear%20Regression%20Model%20线性回归模型)
 
 | 中文术语  | 英文表达  |  英文释义 |
 |:---:|:---:|:---:|
@@ -24,7 +24,7 @@ X.shape = (n_x, m)
 
 *在其他表述中，也有将 $X$ 转置表示为一个 $m \times n_x$ 的矩阵的表达*
 
-同理，输出 $y^{(1)}, y^{(2)}, \cdots, y^{(m)}$ 也可以合并为一个 $1 \times m$ 维的矩阵 $Y = [y^{(1)}, y^{(2)}, \cdots, y^{(m)}]$
+同理，输出 $y^{(1)}, y^{(2)}, \cdots, y^{(m)}$ 也可以合并为一个 $1 \times m$ 维的矩阵 $Y = [y^{(1)}, y^{(2)}, \cdots, y^{(m)}]$ 
 ```Python
 Y.shape = (1, m)
 ```
@@ -46,7 +46,7 @@ Is $f_{\vec{w},b}(\vec{x}) \geq 0.5$ (or $z = \vec{w}\cdot\vec{x} + b \geq 0$) ?
 
 [Cost function for Logistic Regression](../MachineLearning2022/Week%2003%20Classification.md#Cost%20function%20for%20Logistic%20Regression)
 
-cost function for linear regression: 
+回顾 cost function for linear regression: 
 $$J(\vec{w},b) = \frac{1}{2m}\sum_{i=1}^{m}(f_{\vec{w},b}(\vec{x}^{(i)})-y^{(i)})^2$$
 
 Loss function $\mathcal{L}(f_{\vec{w},b}(\vec{x}^{(i)}),y^{(i)})$ for the $i^{\text{th}}$ example 
@@ -59,14 +59,45 @@ $$\mathcal{L}(f_{\vec{w},b}(\vec{x}^{(i)}),y^{(i)})=
 \end{aligned} 
 \right.$$
 
-对于$y^{(i)}$不是$1$就是$0$的二元输出，可以重新简化Loss function。
+对于 $y^{(i)}$ 不是 $1$ 就是 $0$ 的二元输出，可以重新简化 Loss function 。
 the Simplified Cost Function is 
 $$\mathcal{L}(f_{\vec{w},b}(\vec{x}^{(i)}),y^{(i)})=
 -y^{(i)} * \log(f_{\vec{w},b}(\vec{x}^{(i)})) -(1-y^{(i)}) * \log(1 - f_{\vec{w},b}(\vec{x}^{(i)}))$$
 
-Cost function 
+Cost function for Logistic Regression
 $$\begin{align*}
 J(\vec{w},b) & = \frac{1}{m} \sum_{i=1}^{m}\mathcal{L}(f_{\vec{w},b}(\vec{x}^{(i)}),y^{(i)})  \\
-& = -\frac{1}{m} \sum_{i=1}^{m}[y^{(i)} * \log(f_{\vec{w},b}(\vec{x}^{(i)})) + (1-y^{(i)}) * \log(1 - f_{\vec{w},b}(\vec{x}^{(i)}))]
+& = -\frac{1}{m} \sum_{i=1}^{m}\left[y^{(i)} * \log(f_{\vec{w},b}(\vec{x}^{(i)})) + (1-y^{(i)}) * \log(1 - f_{\vec{w},b}(\vec{x}^{(i)}))\right]
 \end{align*}$$
 
+## Gradient Descent
+
+[Gradient Descent for Multiple Regression 梯度下降](../MachineLearning2022/Week%2002%20Regression%20with%20multiple%20input%20variables.md#Gradient%20Descent%20for%20Multiple%20Regression%20梯度下降)
+
+find $w$ and $b$ that minimize $J(w, b)$
+
+Simultaneously update 
+$$
+\begin{align*}
+\vec{w} &= \vec{w} - \alpha * \frac{\partial}{\partial \vec{w}} J(\vec{w}, b) = \vec{w} - \alpha * \frac{1}{m} \sum_{i=1}^{m}(f_{\vec{w},b}(\vec{x}^{(i)})-y^{(i)}) * \vec{x}^{(i)} \\
+b &= b - \alpha * \frac{\partial}{\partial b} J(\vec{w}, b) = b - \alpha * \frac{1}{m} \sum_{i=1}^{m}(f_{\vec{w},b}(\vec{x}^{(i)})-y^{(i)})
+\end{align*}
+$$
+
+## Computation Graph 计算图
+
+[Computation Graph](../MachineLearning2022/Week%2005%20Neural%20network%20training.md#Computation%20Graph)
+
+- forward pass 正向传播 进行前向计算，计算神经网络的输出
+- backward pass 反向传播 进行反向计算，计算梯度或微分
+
+backward pass $w \rightarrow v \rightarrow u \rightarrow J$
+$\frac{\partial{J}}{\partial{w}} = \frac{\partial{J}}{\partial{u}} \times \frac{\partial{u}}{\partial{v}} \times \frac{\partial{v}}{\partial{w}}$
+
+## Vectorization
+
+[A very useful idea **Vectorization** 向量化](../MachineLearning2022/Week%2002%20Regression%20with%20multiple%20input%20variables.md#A%20very%20useful%20idea%20**Vectorization**%20向量化)
+
+Vectorization 使得代码运行速度比 Loop 更快
+
+Whenever possible, avoid explicit **for**-loops.
