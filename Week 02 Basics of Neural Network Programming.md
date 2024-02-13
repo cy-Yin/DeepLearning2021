@@ -101,3 +101,26 @@ $\frac{\partial{J}}{\partial{w}} = \frac{\partial{J}}{\partial{u}} \times \frac{
 Vectorization 使得代码运行速度比 Loop 更快
 
 Whenever possible, avoid explicit **for**-loops.
+
+注：
+```Python
+a1 = np.array([1, 2, 3, 4, 5])
+a2 = np.array([[1, 2, 3, 4, 5]])
+```
+a1, a2 维度不同：dim(a1) = 1; dim(a2) = 2
+```Python
+>>> a1.shape
+(5,)
+>>> a2.shape
+(1, 5)
+```
+
+一般 Vectorization 时转化为矩阵运算时都会选择后面一种方式，或者通过`reshape`方法变为标准形式 
+如：
+```Python
+a = np.random.randn(5, 1)
+b = np.zeros(5).reshape(5, 1)
+```
+等等，构造 $5 \times 1$ 的列向量，而非 `shape=(5,)` 的 array 数组，前者在进行数学运算时更加符合直觉
+
+一般规定输入 $x$ 为单个输入列向量 $x^{(i)}$ 按行排列形成输入矩阵 $\left[x^{(1)}, x^{(2)}, \cdots, x^{(m)}\right]$，输出的 $\hat{y}$ 为 $1 \times m$ 向量，便于进行后续数据处理。
